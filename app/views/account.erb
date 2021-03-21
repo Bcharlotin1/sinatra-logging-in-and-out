@@ -2,11 +2,24 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>title</title>
+    <title>account</title>
     <link rel="stylesheet" href="stylesheets/bootstrap.css" type="text/css">  
   </head>
   <body id="page-top">
-    
+     
 
+      <% if Helpers.is_logged_in?(session)%>
+          
+      <%@current = Helpers.current_user(session)%>
+         <h1>Welcome <%=@current.username%></h1>
+         <h3>Your Balance: <%=@current.balance%></h3>
+           <form action='/logout' method="get">
+              <input id ="Submit" type="submit" value="Log Out">
+          </form>
+      <%else%>
+        <h2>You Must <a href="/">Log In</a> to View Your Balance'</h2>
+        
+      <%end%>
+      
   </body>
 </html>
